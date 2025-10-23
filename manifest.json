@@ -1,0 +1,80 @@
+{
+	"_version": "1.15.0",
+	"sap.app": {
+		"id": "helleniq.workzone.counter",
+		"type": "card",
+		"title": "Counter & Navigation Card",
+		"subTitle": "Helleniq Energy",
+		"applicationVersion": {
+			"version": "1.0.9"
+		},
+		"shortTitle": "",
+		"info": "Create Counter UI Card",
+		"description": "Create Dynamic 'Tiles' to present Counter with onClick navigation",
+		"tags": {
+			"keywords": [
+				"Counter",
+				"Navigation"
+			]
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://technical-object"
+		}
+	},
+	"sap.platform.cf": {
+	   "ui5VersionNumber": "1.136.x"
+    },
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "helleniq.workzone.counter.View",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.38",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {}
+			}
+		}
+	},
+	"sap.card": {
+		"type": "Component",
+		"content": {
+            "minHeight": "4rem"	
+        },
+		"configuration": {
+			"editor": "dt/configuration",
+			"parameters": {
+				"title": {
+					"value": "Purchase Orders"
+				},
+				"headericon": {
+					"value": "sap-icon://sales-order"
+				},
+				"counterUrl":{
+					"value": "/sap/opu/odata/IWPGW/TASKPROCESSING;v=2;o=GWXCLNT010_ARIBA/ScenarioCollection?$filter=key%20eq%20%27ARIBA_AWARDS%27"
+				},
+				"counterInterval":{
+					"value": "20"
+				},
+				"targetUrl":{
+					"value": "#sectionId"
+				},
+				"color":{
+					"value": "Neutral"
+				}
+			},
+			"destinations": {
+				"visionSystem": {
+					"name": "vision_system",
+					"defaultUrl": "http://visiondev:8430"
+				}
+			}
+		}		
+	}
+}
