@@ -35,15 +35,11 @@ sap.ui.define([
 
 			this._mODataModel.setData([]);
 
- 
-
-
 			return this.getOwnerComponent().oCard.request({
 				url: "{{destinations.visionSystem}}/" + oParams.counterUrl,
 				withCredentials: true
 			}).then(function (oData) {
-
-			 
+		 
 
 				var items = [];
 				var count = 0;
