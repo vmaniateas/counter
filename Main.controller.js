@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/IntervalTrigger"
+], function (Controller, JSONModel, IntervalTrigger) {
 	"use strict";
 
 	return Controller.extend("helleniq.workzone.counter.Main", {
@@ -12,6 +13,8 @@ sap.ui.define([
 				oCard = oComponent.oCard,
 				oParams = oCard.getCombinedParameters();
 
+			this._oParams = oParams;
+
 			this._mMainModel = new JSONModel({
 				busy: true,
 				buttonText: oParams.title,
@@ -21,25 +24,32 @@ sap.ui.define([
 			});
 
 			this.setModel(this._mMainModel, "mainView");
+			this._initialiseMain(this._oParams);//αρχικό count
 
-			// Data model (table rows)
-			this._mODataModel = new JSONModel([]);
-			this.setModel(this._mODataModel);
 
-			this._initialiseMain(oParams);
+			this._oTrigger = new IntervalTrigger(oParams.counterInterval * 1000); // ← κάθε x secs
+			this._oTrigger.addListener(function () {
+				this._mMainModel.setProperty("/busy", true);
+
+
+				this._initialiseMain(this._oParams);
+			}, this);
 
 		},
-
+		onExit: function () {
+			if (this._oTrigger) {
+				this._oTrigger.destroy();             // ← καθάρισμα timer
+				this._oTrigger = null;
+			}
+		},
 
 		_initialiseMain: async function (oParams) {
-
-			this._mODataModel.setData([]);
-
+			var sUrl = this._buildRequestUrl(oParams);
 			return this.getOwnerComponent().oCard.request({
-				url: "{{destinations.visionSystem}}/" + oParams.counterUrl,
+				url: sUrl,
 				withCredentials: true
 			}).then(function (oData) {
-		 
+
 
 				var items = [];
 				var count = 0;
@@ -95,15 +105,30 @@ sap.ui.define([
 				else {
 					console.warn("⚠️ Unexpected oData format:", oData);
 				}
-                this._mMainModel.setProperty("/busy", false);
+				this._mMainModel.setProperty("/busy", false);
 				this._mMainModel.setProperty("/badgeCount", count);
-				this._mODataModel.setData(a);
+
 			}.bind(this)).catch(function (oError) {
 				console.log(JSON.stringify(oError));
-
 			}.bind(this));
 		},
+		_buildRequestUrl: function (oParams) {
+			var sBackend = oParams.backend;          // π.χ. "visionSystem" | "visionSystem2" | "successfactors" | "concur" | "free"
+			var sPath = oParams.counterUrl || "";    // ό,τι δήλωσε ο admin
 
+			if (sBackend === "free") {
+				// Καμία επεξεργασία — ο Admin δίνει full URL
+				return sPath;
+			}
+
+			// prefix από το selected destination
+			var sPrefix = "{{destinations." + sBackend + "}}";
+			// εγγυόμαστε ένα μόνο "/" ανάμεσα σε prefix και path
+			if (sPath && sPath.charAt(0) !== "/") {
+				sPath = "/" + sPath;
+			}
+			return sPrefix + sPath;
+		},
 
 
 		handleSeeDetails: function () {

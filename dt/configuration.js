@@ -21,15 +21,15 @@ sap.ui.define(["sap/ui/integration/Designtime"], function (
 						"label": "Card Title",
 						"cols": 1,
 						"allowDynamicValues": true
-					},				
+					},
 					"headericon": {
 						"manifestpath": "/sap.card/configuration/parameters/headericon/value",
 						"type": "string",
 						"label": "Card Icon",
 						"cols": 1,
 						"allowDynamicValues": false,
-						"allowSettings": false					
-					},	
+						"allowSettings": false
+					},
 					"counterUrl": {
 						"manifestpath": "/sap.card/configuration/parameters/counterUrl/value",
 						"type": "string",
@@ -54,7 +54,7 @@ sap.ui.define(["sap/ui/integration/Designtime"], function (
 						"cols": 1,
 						"allowDynamicValues": true
 					},
-						"color": {
+					"color": {
 						"manifestpath": "/sap.card/configuration/parameters/color/value",
 						"type": "string",
 						"translatable": false,
@@ -62,7 +62,31 @@ sap.ui.define(["sap/ui/integration/Designtime"], function (
 						"cols": 1,
 						"allowDynamicValues": true
 					},
-					
+					"backend": {
+						"manifestpath": "/sap.card/configuration/parameters/backend/value",
+						"type": "string",
+						"label": "Backend Destination",
+						"cols": 1,
+						"allowDynamicValues": false,
+						"values": {
+							// Στατικό dataset
+							"data": {
+								"json": [
+									{ "key": "visionSystem", "title": "Vision DEV (vision_system)" },
+									{ "key": "visionSystem2", "title": "Vision QA  (vision_system_qa)" },
+									{ "key": "visionSystem3", "title": "QA Principal  (VSQ_principal_propagation)" },
+									{ "key": "successfactors", "title": "SuccessFactors_API" },
+									{ "key": "concur", "title": "Concur_API" },
+									{ "key": "free", "title": "free call - No destination" }
+								]
+							},
+							// ΠΩΣ να χαρτογραφήσει κάθε item -> dropdown option
+							"item": {
+								"key": "{key}",
+								"text": "{title}"
+							}
+						}
+					}
 				}
 			},
 			"preview": {

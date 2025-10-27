@@ -6,7 +6,7 @@
 		"title": "Counter & Navigation Card",
 		"subTitle": "Helleniq Energy",
 		"applicationVersion": {
-			"version": "1.0.9"
+			"version": "1.0.12"
 		},
 		"shortTitle": "",
 		"info": "Create Counter UI Card",
@@ -67,14 +67,34 @@
 				},
 				"color":{
 					"value": "Neutral"
-				}
+				},
+				"backend": {
+                   "value": "visionSystem"
+                }
 			},
 			"destinations": {
-				"visionSystem": {
+                "visionSystem": {
 					"name": "vision_system",
-					"defaultUrl": "http://visiondev:8430"
-				}
-			}
+					"defaultUrl": "http://visiondev.sap.helleniq.gr:443"
+				},				
+				"visionSystem2": {
+                    "name": "vision_system_qa",
+                    "defaultUrl": "http://vhhpdvsqci.sap.helleniq.gr:443"
+                },
+                "visionSystem3": {
+					"name": "VSQ_principal_propagation",
+					"defaultUrl": "http://visionqa-pp.sap.helleniq.gr:443"
+				},
+				"successfactors": {
+                    "name": "SuccessFactors_API",
+                    "defaultUrl": "https://api2.successfactors.eu"
+                },
+				"concur": {
+                    "name": "concur_API",
+                    "defaultUrl": "https://eu2.api.concursolutions.com"
+                }
+                
+            }
 		}		
 	}
 }

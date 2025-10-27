@@ -7,14 +7,16 @@
 	 
 	 <TileContent  
    busy="{mainView>/busy}"   
+   busyIndicatorSize="Small"
    visible="{= !${device>/system/phone} }"
-   footer="{mainView>/buttonText}" 
-   
+   footer="{mainView>/buttonText}"    
    class="sapUiSmallMargin "   >			      
       <NumericContent withMargin="true" value="{mainView>/badgeCount}"		
       icon="{mainView>/icon}"  
       valueColor="{mainView>/color}" 
       press=".handleSeeDetails"/>  
+
+
     </TileContent>
  
 </mvc:View>
