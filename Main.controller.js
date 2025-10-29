@@ -45,11 +45,12 @@ sap.ui.define([
 
 		_initialiseMain: async function (oParams) {
 			var sUrl = this._buildRequestUrl(oParams);
+			
+			
 			return this.getOwnerComponent().oCard.request({
 				url: sUrl,
 				withCredentials: true
 			}).then(function (oData) {
-
 
 				var items = [];
 				var count = 0;

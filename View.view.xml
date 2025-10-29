@@ -6,6 +6,7 @@
 
 	 
 	 <TileContent  
+   
    busy="{mainView>/busy}"   
    busyIndicatorSize="Small"
    visible="{= !${device>/system/phone} }"
@@ -14,7 +15,8 @@
       <NumericContent withMargin="true" value="{mainView>/badgeCount}"		
       icon="{mainView>/icon}"  
       valueColor="{mainView>/color}" 
-      press=".handleSeeDetails"/>  
+      press=".handleSeeDetails"
+            />  
 
 
     </TileContent>
