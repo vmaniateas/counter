@@ -1,24 +1,7 @@
-<mvc:View
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  controllerName="helleniq.workzone.counter.Main">
-
-
-	 
-	 <TileContent  
-   
-   busy="{mainView>/busy}"   
-   busyIndicatorSize="Small"
-   visible="{= !${device>/system/phone} }"
-   footer="{mainView>/buttonText}"    
-   class="sapUiSmallMargin "   >			      
-      <NumericContent withMargin="true" value="{mainView>/badgeCount}"		
-      icon="{mainView>/icon}"  
-      valueColor="{mainView>/color}" 
-      press=".handleSeeDetails"
-            />  
-
-
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="helleniq.workzone.counter.Main">
+	<TileContent busy="{mainView>/busy}" busyIndicatorSize="Small" visible="{= !${device>/system/phone}}"
+		footer="{mainView>/buttonText}" class="sapUiSmallMargin">			      
+		<NumericContent withMargin="true" value="{mainView>/badgeCount}" icon="{mainView>/icon}"
+			valueColor="{mainView>/color}" press=".handleSeeDetails"/>  
     </TileContent>
- 
 </mvc:View>

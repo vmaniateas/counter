@@ -80,13 +80,36 @@ sap.ui.define(["sap/ui/integration/Designtime"], function (
 									{ "key": "free", "title": "free call - No destination" }
 								]
 							},
-							// ΠΩΣ να χαρτογραφήσει κάθε item -> dropdown option
 							"item": {
 								"key": "{key}",
 								"text": "{title}"
 							}
 						}
-					}
+					},
+                   	"app": {
+						"manifestpath": "/sap.card/configuration/parameters/app/value",
+						"type": "string",
+						"label": "Application",
+						"cols": 1,
+						"allowDynamicValues": false,
+						"values": {
+							// Στατικό dataset
+							"data": {
+								"json": [
+									{ "key": "", "title": "SAP Odata" },
+									{ "key": "sf_timeoff", "title": "SF Time Off" },
+									{ "key": "sf_pr", "title": "SF Performance Review" },
+									{ "key": "concur_tr", "title": "Concur Travel Request" }, 
+									{ "key": "concur_er", "title": "Concur Expense Claims " },
+								]
+							},
+							"item": {
+								"key": "{key}",
+								"text": "{title}"
+							}
+						}
+					} 
+
 				}
 			},
 			"preview": {
